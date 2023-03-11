@@ -19,5 +19,3 @@ def test_checkpattern():
 
     renko_pf = RenkoPatternFinder(pbrnk.bricks)
     renko_pf.check_patterns()
-
-
