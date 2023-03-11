@@ -13,6 +13,10 @@ class RenkoPatternFinder:
             print("Bullish zig zag found")
         elif self.check_bearish_zig_zag():
             print("Bearish zig zag found")
+        elif self.check_bullish_two_back():
+            print("Bullish two back found")
+        elif self.check_bearish_two_back():
+            print("Bearish two back found")
         else:
             print("No patterns found")
 
@@ -56,6 +60,34 @@ class RenkoPatternFinder:
                 self.data[-3]["type"] == "up" and
                 self.data[-4]["type"] == "down" and
                 self.data[-5]["type"] == "up"):
+            return True
+        else:
+            return False
+
+    def check_bullish_two_back(self):
+        if (
+                self.data[-1]["type"] == "up" and
+                self.data[-2]["type"] == "up" and
+                self.data[-3]["type"] == "up" and
+                self.data[-4]["type"] == "down" and
+                self.data[-5]["type"] == "down" and
+                self.data[-6]["type"] == "up" and
+                self.data[-7]["type"] == "up" and
+                self.data[-8]["type"] == "up"):
+            return True
+        else:
+            return False
+
+    def check_bearish_two_back(self):
+        if (
+                self.data[-1]["type"] == "down" and
+                self.data[-2]["type"] == "down" and
+                self.data[-3]["type"] == "down" and
+                self.data[-4]["type"] == "up" and
+                self.data[-5]["type"] == "up" and
+                self.data[-6]["type"] == "down" and
+                self.data[-7]["type"] == "down" and
+                self.data[-8]["type"] == "down"):
             return True
         else:
             return False
