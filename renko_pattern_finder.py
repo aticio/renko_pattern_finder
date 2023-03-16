@@ -110,7 +110,6 @@ class RenkoPatternFinder:
             down_count = 0
             down_reached = False
             for b in temp_data:
-                print(b)
                 if b["type"] == "up" and down_reached is False:
                     continue
                 elif b["type"] == "up" and down_reached is True:
