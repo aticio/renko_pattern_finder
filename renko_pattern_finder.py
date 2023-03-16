@@ -17,6 +17,10 @@ class RenkoPatternFinder:
             print("Bullish two back found")
         elif self.check_bearish_two_back():
             print("Bearish two back found")
+        elif self.check_bullish_swing_breakout():
+            print("Bullish swing breakout found")
+        elif self.check_bearish_swing_breakout():
+            print("Bearish swing breakout found")
         else:
             print("No patterns found")
 
@@ -89,5 +93,60 @@ class RenkoPatternFinder:
                 self.data[-7]["type"] == "down" and
                 self.data[-8]["type"] == "down"):
             return True
+        else:
+            return False
+
+    def check_bullish_swing_breakout(self):
+        if self.data[-1]["type"] == "up":
+            temp_data = self.data
+            temp_data.reverse()
+            up_count = 0
+            for b in temp_data:
+                if b["type"] == "up":
+                    up_count = up_count + 1
+                else:
+                    break
+
+            down_count = 0
+            down_reached = False
+            for b in temp_data:
+                print(b)
+                if b["type"] == "up" and down_reached is False:
+                    continue
+                elif b["type"] == "up" and down_reached is True:
+                    break
+                else:
+                    down_count = down_count + 1
+                    down_reached = True
+
+            if up_count - down_count == 1:
+                return True
+        else:
+            return False
+
+    def check_bearish_swing_breakout(self):
+        if self.data[-1]["type"] == "down":
+            temp_data = self.data
+            temp_data.reverse()
+            down_count = 0
+            for b in temp_data:
+                if b["type"] == "down":
+                    down_count = down_count + 1
+                else:
+                    break
+
+            up_count = 0
+            up_reached = False
+            for b in temp_data:
+                if b["type"] == "down" and up_reached is False:
+                    continue
+                elif b["type"] == "down" and up_reached is True:
+                    break
+                else:
+                    up_count = up_count + 1
+                    up_reached = True
+
+            if down_count - up_count == 1:
+                return True
         else:
             return False

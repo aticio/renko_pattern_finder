@@ -5,7 +5,7 @@ import requests
 BINANCE_URL = "https://api.binance.com/api/v3/klines"
 SYMBOL = "BTCUSDT"
 INTERVAL = "1d"
-LIMIT = 365
+LIMIT = 90
 PARAMS = {"symbol": SYMBOL, "interval": INTERVAL, "limit": LIMIT}
 
 
